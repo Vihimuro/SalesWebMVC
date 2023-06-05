@@ -10,7 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using SalesWebMVC.Models
+using SalesWebMVC.Models;
 
 namespace SalesWebMVC
 {
@@ -37,7 +37,8 @@ namespace SalesWebMVC
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddDbContext<SalesWebMVCContext>(options =>
-                   options.UseSqlServer(Configuration.GetConnectionString("SalesWebMvcContext")));
+                   options.UseMySql(Configuration.GetConnectionString("SalesWebMVCContext"), builder =>
+                    builder.MigrationsAssembly("SalesWebMVC")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
